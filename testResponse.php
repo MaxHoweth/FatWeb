@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = ""; // MUST BE ENTERED BEFORE TESTING!!!!!
+$password = "greenqueenfarms"; // MUST BE ENTERED BEFORE TESTING!!!!!
 $dbname = "main";
 
 $conn = new mysqli($servername,$username,$password,$dbname);
