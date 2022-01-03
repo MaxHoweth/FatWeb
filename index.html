@@ -204,13 +204,40 @@
                     </div>
 
                     <script>
-
+                        var httpRequest;
+                        
                         document.getElementById("generateReportButton").addEventListener("click", function () {
-                            alert('Hello, world!');
+                            alert("Attempting a HTTP Request to the Server");
+                            httpRequest = new XMLHttpRequest();
+                            
+                            if(!httpRequest) {
+                                alert("Giving up :( Cannot Create an XMLHTTP instance");
+                                return false;
+                            }
+                            
+                            httpRequest.onreadystatechange = alertContents;
+                            httpRequest.open('GET', "testResponse.php");
+                            httpRequest.send();
+                            
 
+                        });
+                        
+                        function alertContents() {
+                            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                               if(httpRequest.status = 200) {
+                                   alert("HTTP REQUEST SUCCESFUL WITH CODE 200");
+                                   alert(httpRequest.responseText);
+                                   
+                               }
+                               else {
+                                   alert("There was a problem with the request /n/r Error Code: ");
+                                   alert(httpRequest.status);
+                               }
+                               
+                               
+                                
+                            }
                         }
-
-                        )
 
 
                         
