@@ -204,16 +204,38 @@
                     </div>
 
                     <script>
+                        var httpRequest;
 
                         document.getElementById("generateReportButton").addEventListener("click", function () {
-                            alert('Hello, world!');
+                            alert('Attempting a HTTP Request To Server...');
+                            httpRequest = new XMLHttpRequest();
 
+                            if (!httpRequest) {
+                                alert('Giving up :( Cannot create an XMLHTTP instance');
+                                return false;
+                            }
+                            httpRequest.onreadystatechange = alertContents;
+                            httpRequest.open('GET', 'https://www.Catfact.ninja/fact', true);
+                            httpRequest.send();
+                          
+
+
+                        });
+
+                        function alertContents() {
+                            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                                if (httpRequest.status === 200) {
+                                    alert(httpRequest.responseText);
+                                } else {
+                                    alert('There was a problem with the request.');
+                                    alert(httpRequest.status);
+                                }
+                            }
                         }
+                    
 
-                        )
 
 
-                        
                     </script>
 
 
